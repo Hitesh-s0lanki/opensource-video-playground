@@ -62,11 +62,11 @@ If `torch.cuda.is_available()` prints `False`, you have the CPU-only wheel. The
 `cu124` for `cu126` or `cu121` if your driver needs a different CUDA build.
 
 > **Use `uv run --no-sync`, not bare `uv run`.** Bare `uv run` re-resolves the
-> environment against `pyproject.toml` on every invocation. This project lives
-> under OneDrive, and a file locked by the sync client mid-reinstall leaves the
-> package half-uninstalled — which is exactly how numpy broke during setup here.
-> `--no-sync` skips that step, and calling `.venv\Scripts\...` directly avoids it
-> entirely.
+> environment against `pyproject.toml` on every invocation. If the checkout sits
+> in a cloud-synced folder (OneDrive, Dropbox), a file locked by the sync client
+> mid-reinstall leaves that package half-uninstalled — this broke numpy during
+> development. `--no-sync` skips the re-resolve, and calling `.venv\Scripts\...`
+> directly avoids it entirely.
 
 ### Verify the install
 
