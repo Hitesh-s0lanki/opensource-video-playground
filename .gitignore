@@ -1,0 +1,27 @@
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+
+# generated media + sidecar metadata.
+# `outputs/*` rather than `outputs/`: git cannot re-include a file whose parent
+# directory is excluded, so the .gitkeep negation below only works this way.
+outputs/*
+!outputs/.gitkeep
+
+# local model weights / HF cache when HF_HOME is pointed inside the project
+models/
+.cache/
+
+# reference images fetched for a render - user data, not source
+references/
+
+.streamlit/secrets.toml
+
+# Local secrets and machine-specific paths. The documented template
+# (.env.example) is committed; the real .env never is.
+.env
+.env.*
+!.env.example

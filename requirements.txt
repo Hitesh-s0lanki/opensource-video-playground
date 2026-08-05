@@ -1,0 +1,35 @@
+# Plain-pip mirror of pyproject.toml dependencies.
+#   uv pip install -r requirements.txt
+#
+# The extra index is what gets you CUDA-enabled torch wheels on Windows.
+# Swap cu124 -> cu126 / cu121 if your driver or toolchain needs a different build.
+--extra-index-url https://download.pytorch.org/whl/cu124
+
+torch==2.6.0
+torchvision==0.21.0
+
+diffusers>=0.33.1
+transformers>=4.49.0
+accelerate>=1.4.0
+safetensors>=0.4.5
+huggingface-hub>=0.30.0
+peft>=0.14.0
+sentencepiece>=0.2.0
+protobuf>=4.25.3
+ftfy>=6.2.0
+einops>=0.8.0
+
+imageio>=2.36.0
+imageio-ffmpeg>=0.5.1
+pillow>=10.4.0
+numpy>=1.26,<3
+
+streamlit>=1.40.0
+# Streamlit's own bound is `starlette<2`, which permits a major version jump.
+# Starlette 1.x made `thread_minimum_size` required on GZipResponder, and
+# Streamlit's gzip middleware subclasses it without passing that argument - so
+# every gzip-accepting request (i.e. every browser) 500s in middleware. Keep
+# starlette on 0.x until Streamlit supports 1.x.
+starlette>=0.46,<1.0
+psutil>=6.0.0
+python-dotenv>=1.0.1
